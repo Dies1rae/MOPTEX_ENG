@@ -8,6 +8,7 @@ void graph_maker::set_parametrs() {
 }
 
 void graph_maker::run_loop() {
+	main_menu();
 	this->set_parametrs();
 
 	std::cout << "Choose formula: " << std::endl;
@@ -16,8 +17,8 @@ void graph_maker::run_loop() {
 	}
 	std::cin >> this->formula_num;
 	
-	
-	main_menu();
+	std::string formula_tmp = "Choosen formula: " + this->core_formulas_[this->formula_num - 1];
+	main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
 	std::cin >> this->menu_switcher_;
 
 	switch (this->formula_num) {
@@ -99,8 +100,8 @@ void graph_maker::run_loop() {
 		break;
 	}
 
-	main_menu();
-	std::cout << "|Choosen formula: " << this->core_formulas_[this->formula_num - 1] << "|" <<std::endl;
+	
+	main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
 
 	this->grapth_ = 'Y';
 	if (this->grapth_ == 'Y' || this->grapth_ == 'y') {
