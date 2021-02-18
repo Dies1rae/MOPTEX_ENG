@@ -88,6 +88,17 @@ void graph_maker::run_loop() {
 			std::cerr << "Some data error" << std::endl;
 		} break;
 
+	case 5:
+		try {
+			for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
+				this->x_y_.second = 4 * sin(this->x_y_.first / 2);
+				this->res_.push_back({ this->x_y_.first, this->x_y_.second });
+			}
+		}
+		catch (...) {
+			std::cerr << "Some data error" << std::endl;
+		} break;
+
 	default:
 		break;
 	}
@@ -100,7 +111,7 @@ void graph_maker::run_loop() {
 	std::cout << "Load graph: Y\\N" << std::endl;
 	std::cin >> this->grapth_;
 	if (this->grapth_ == 'Y' || this->grapth_ == 'y') {
-		Drawings<60, 30> default_can;
+		gsch::Drawings<60, 30> default_can;
 		default_can.axes();
 		for (const auto& point : this->res_) {
 			default_can.plot(point.first, point.second);

@@ -26,7 +26,8 @@ private:
 		"f(x) = A * (x * x) + B * x + C",
 		"f(x) = A * sin(x) + B * cos(C * x)",
 		"f(x) = A * log(B * x)",
-		"f(x) = A / (sin(x * x) * B)"
+		"f(x) = A / (sin(x * x) * B)",
+		"f(x) = 4 * sin(x / 2)"
 	};
 	//data
 	int formula_num = 0;

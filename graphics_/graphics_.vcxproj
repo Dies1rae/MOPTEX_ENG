@@ -139,7 +139,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="graph.cpp" />
     <ClCompile Include="graph_maker.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
