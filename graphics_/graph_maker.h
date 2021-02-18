@@ -4,6 +4,8 @@
 #include <string>
 #include <iostream>
 #include <cstdarg>
+#include <chrono>
+#include <thread>
 
 class graph_maker {
 public:
@@ -19,7 +21,6 @@ private:
 	bool pause_ = false;
 	bool break_ = false;
 	bool info_ = false;
-	char grapth_ = false;
 	int menu_switcher_ = 0;
 	//core
 	std::vector<std::string> core_formulas_{

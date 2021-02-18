@@ -8,6 +8,9 @@ void graph_maker::set_parametrs() {
 }
 
 void graph_maker::run_loop() {
+	gsch::Drawings<60, 30> default_can;
+	default_can.axes();
+
 	main_menu();
 	this->set_parametrs();
 
@@ -46,6 +49,13 @@ void graph_maker::run_loop() {
 			for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
 				this->x_y_.second = (this->A_ * std::pow(this->x_y_.first, 2)) + (this->B_ * this->x_y_.first) + this->C_;
 				this->res_.push_back({ this->x_y_.first, this->x_y_.second });
+				for (const auto& point : this->res_) {
+					default_can.plot(this->x_y_.first, this->x_y_.second);
+				}
+				main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+				std::cout << default_can;
+				std::chrono::milliseconds timespan(500);
+				std::this_thread::sleep_for(timespan);
 			}
 		}
 		catch (...) {
@@ -57,6 +67,12 @@ void graph_maker::run_loop() {
 			for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
 				this->x_y_.second = (this->A_ * sin(this->x_y_.first)) + (this->B_ * cos(this->x_y_.first * this->C_));
 				this->res_.push_back({ this->x_y_.first, this->x_y_.second });
+				for (const auto& point : this->res_) {
+					default_can.plot(this->x_y_.first, this->x_y_.second);
+				}
+				std::cout << default_can;
+				std::chrono::milliseconds timespan(500);
+				std::this_thread::sleep_for(timespan);
 			}
 		}
 		catch (...) {
@@ -68,6 +84,13 @@ void graph_maker::run_loop() {
 			for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
 				this->x_y_.second = this->A_ * log(this->B_ * this->x_y_.first);
 				this->res_.push_back({ this->x_y_.first, this->x_y_.second });
+				for (const auto& point : this->res_) {
+					default_can.plot(this->x_y_.first, this->x_y_.second);
+				}
+				main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+				std::cout << default_can;
+				std::chrono::milliseconds timespan(500);
+				std::this_thread::sleep_for(timespan);
 			}
 		}
 		catch (...) {
@@ -79,6 +102,13 @@ void graph_maker::run_loop() {
 			for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
 				this->x_y_.second = this->A_ / ((sin(std::pow(this->x_y_.first, 2))) * this->B_);
 				this->res_.push_back({ this->x_y_.first, this->x_y_.second });
+				for (const auto& point : this->res_) {
+					default_can.plot(this->x_y_.first, this->x_y_.second);
+				}
+				main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+				std::cout << default_can;
+				std::chrono::milliseconds timespan(500);
+				std::this_thread::sleep_for(timespan);
 			}
 		}
 		catch (...) {
@@ -90,6 +120,13 @@ void graph_maker::run_loop() {
 			for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
 				this->x_y_.second = 4 * sin(this->x_y_.first / 2);
 				this->res_.push_back({ this->x_y_.first, this->x_y_.second });
+				for (const auto& point : this->res_) {
+					default_can.plot(this->x_y_.first, this->x_y_.second);
+				}
+				main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+				std::cout << default_can;
+				std::chrono::milliseconds timespan(500);
+				std::this_thread::sleep_for(timespan);
 			}
 		}
 		catch (...) {
@@ -101,16 +138,9 @@ void graph_maker::run_loop() {
 	}
 
 	
-	main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
-
-	this->grapth_ = 'Y';
-	if (this->grapth_ == 'Y' || this->grapth_ == 'y') {
-		gsch::Drawings<60, 30> default_can;
-		default_can.axes();
-		for (const auto& point : this->res_) {
-			default_can.plot(point.first, point.second);
-		}
-		
-		std::cout << default_can;
-	}
+	//main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+	
+	
+	
+	
 }

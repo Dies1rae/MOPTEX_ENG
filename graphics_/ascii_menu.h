@@ -10,7 +10,7 @@ void main_menu(const double a = 0.0, const double b = 0.0, const double c = 0.0,
 	for (size_t ptr = formula.size(); ptr < 57; ptr++) {
 		end_str_tmp += ' ';
 	}
-	end_str_tmp.push_back('|');
+	end_str_tmp.push_back(']');
 	system("CLS");
 	std::cout << "[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]" << std::endl;
 	std::cout << "|@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@|" << std::endl;
@@ -25,9 +25,9 @@ void main_menu(const double a = 0.0, const double b = 0.0, const double c = 0.0,
 	std::cout << "|------------------|----------------------|----------------|" << std::endl;
 	std::cout << "|-----1. START-----|-----2. PAUSE---------|---3. BREAK-----|" << std::endl;
 	std::cout << "|------------------|----------------------|----------------|" << std::endl;
-	std::cout << "[~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~]" << std::endl;
+	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
 	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~GRAPHIC~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
-	std::cout << "| " << formula << end_str_tmp << std::endl;
+	std::cout << "[ " << formula << end_str_tmp << std::endl;
 	
 	 
 }
