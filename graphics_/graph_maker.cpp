@@ -1,6 +1,6 @@
 #include "graph_maker.h"
 #include "graph.h"
-
+#include "ascii_menu.h"
 
 void graph_maker::set_parametrs() {
 	std::cout << "Please set parametrs for field A B C and FROM TO STEP" << std::endl;
@@ -17,11 +17,7 @@ void graph_maker::run_loop() {
 	std::cin >> this->formula_num;
 	
 	
-	std::cout << "~~~~~~~~~~~~~~~~Main controls~~~~~~~~~~~~~~~" << std::endl;
-	std::cout << "[------------|-----------------|-----------]" << std::endl;
-	std::cout << "|--1. START--|----2. PAUSE-----|-3. BREAK--|" << std::endl;
-	std::cout << "[------------|-----------------|-----------]" << std::endl;
-	std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << std::endl;
+	main_menu();
 	std::cin >> this->menu_switcher_;
 
 	switch (this->formula_num) {
@@ -103,13 +99,10 @@ void graph_maker::run_loop() {
 		break;
 	}
 
-	std::cout << "Choosen formula: " << this->core_formulas_[this->formula_num - 1] << std::endl;
-	for (const auto& x_y : this->res_) {
-		std::cout << "X: " << x_y.first << " Y: " << x_y.second << std::endl;
-	}
+	main_menu();
+	std::cout << "|Choosen formula: " << this->core_formulas_[this->formula_num - 1] << "|" <<std::endl;
 
-	std::cout << "Load graph: Y\\N" << std::endl;
-	std::cin >> this->grapth_;
+	this->grapth_ = 'Y';
 	if (this->grapth_ == 'Y' || this->grapth_ == 'y') {
 		gsch::Drawings<60, 30> default_can;
 		default_can.axes();

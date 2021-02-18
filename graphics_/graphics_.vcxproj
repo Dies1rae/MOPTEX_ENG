@@ -143,6 +143,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ascii_menu.h" />
     <ClInclude Include="graph.h" />
     <ClInclude Include="graph_maker.h" />
   </ItemGroup>
