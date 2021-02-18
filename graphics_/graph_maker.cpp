@@ -138,9 +138,4 @@ void graph_maker::run_loop() {
 	}
 
 	
-	//main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
-	
-	
-	
-	
 }
