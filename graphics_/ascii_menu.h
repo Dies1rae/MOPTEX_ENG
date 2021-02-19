@@ -26,7 +26,7 @@ void main_menu(const double proc = 0.0, const double a = 0.0, const double b = 0
 	std::cout << "|----1. START-|-2. PAUSE-|-3. BREAK-|-4. INFO-|-5. QUIT----|" << std::endl;
 	std::cout << "|-------------|----------|----------|---------|------------|" << std::endl;
 	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
-	std::cout << "|---Process bar: " << proc << " % " << std::setw(39) << "|" << std::endl;
+	std::cout << "|---Process bar: " << proc << " % " << std::setw(39) << std::endl;
 	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
 	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~GRAPHIC~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
 	std::cout << "[ " << formula << end_str_tmp << std::endl;
