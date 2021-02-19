@@ -1,5 +1,4 @@
 #include "graph_maker.h"
-#include "graph.h"
 
 #include <thread>
 #include <iostream>

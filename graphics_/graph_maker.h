@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include "graph.h"
+
 #include <math.h>
 #include <vector>
 #include <string>
@@ -14,7 +16,6 @@
 #include <thread>
 
 const std::chrono::microseconds menu_timeout(50);
-inline static const unsigned long W = 60;
 
 class graph_maker {
 public:
@@ -25,7 +26,8 @@ public:
 	void run_loop();
 	void async_menu();
 	double get_percent();
-
+	void main_menu_loop();
+	gsch::Drawings<60, 30> default_can_;
 private:
 	//interface
 	char menu_pos_ = '0';

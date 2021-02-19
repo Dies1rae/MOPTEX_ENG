@@ -3,6 +3,7 @@
 #include <iostream>
 #include <array>
 #include <cmath>
+
 namespace gsch{
     template <unsigned long TColumns = 100, unsigned long TRows = 50>
     struct Drawings {
