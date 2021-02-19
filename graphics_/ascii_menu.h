@@ -5,7 +5,7 @@
 
 
 
-void main_menu(const double a = 0.0, const double b = 0.0, const double c = 0.0, const double F = 0.0, const double T = 0.0, const double S = 0.0, const std::string& formula = "Choosen formula:", const std::vector<std::string>& formulas = {}) {
+void main_menu(const double proc = 0.0, const double a = 0.0, const double b = 0.0, const double c = 0.0, const double F = 0.0, const double T = 0.0, const double S = 0.0, const std::string& formula = "Choosen formula:", const std::vector<std::string>& formulas = {}) {
 	std::string end_str_tmp;
 	for (size_t ptr = formula.size(); ptr < 57; ptr++) {
 		end_str_tmp += ' ';
@@ -25,6 +25,8 @@ void main_menu(const double a = 0.0, const double b = 0.0, const double c = 0.0,
 	std::cout << "|-------------|----------|----------|---------|------------|" << std::endl;
 	std::cout << "|----1. START-|-2. PAUSE-|-3. BREAK-|-4. INFO-|-5. QUIT----|" << std::endl;
 	std::cout << "|-------------|----------|----------|---------|------------|" << std::endl;
+	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
+	std::cout << "|---Process bar: " << proc << " % " << std::setw(39) << "|" << std::endl;
 	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
 	std::cout << "|~~~~~~~~~~~~~~~~~~~~~~~~~GRAPHIC~~~~~~~~~~~~~~~~~~~~~~~~~~|" << std::endl;
 	std::cout << "[ " << formula << end_str_tmp << std::endl;

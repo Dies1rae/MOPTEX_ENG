@@ -23,6 +23,7 @@ public:
 	void set_parametrs();
 	void run_loop();
 	void async_menu();
+	double get_percent();
 
 private:
 	//interface
@@ -42,7 +43,8 @@ private:
 		"f(x) = 4 * sin(x / 2)"
 	};
 	//data
-	int formula_num = 0;
+	double percent_ = 0.0;
+	int formula_num_ = 0;
 	double A_ = 0.0;
 	double B_ = 0.0;
 	double C_ = 0.0;

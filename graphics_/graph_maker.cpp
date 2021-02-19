@@ -15,6 +15,11 @@ int menu_switcher() {
 	return menu;
 }
 
+double graph_maker::get_percent() {
+	this->percent_ = ((this->res_.size() - 1)/ ((this->to_ - this->from_) / this->step_)) * 100;
+	return this->percent_;
+}
+
 void graph_maker::async_menu() {
 	auto future = std::async(menu_switcher);
 	if (future.wait_for(menu_timeout) == std::future_status::ready) {
@@ -35,7 +40,7 @@ void graph_maker::run_loop() {
 		gsch::Drawings<60, 30> default_can;
 		default_can.axes();
 
-		main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
+		main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 		std::cout << default_can;
 
 		std::cout << "Choose menu option: " << std::endl;
@@ -90,7 +95,7 @@ void graph_maker::run_loop() {
 
 		if(this->start_){
 			
-			main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
+			main_menu(this->get_percent(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 			std::cout << default_can;
 
 			this->set_parametrs();
@@ -98,13 +103,13 @@ void graph_maker::run_loop() {
 			for (size_t ptr = 0; ptr < this->core_formulas_.size(); ptr ++) {
 				std::cout << ptr + 1 << ": " << this->core_formulas_[ptr] << std::endl;
 			}
-			std::cin >> this->formula_num;
+			std::cin >> this->formula_num_;
 	
-			std::string formula_tmp = "Choosen formula: " + this->core_formulas_[this->formula_num - 1];
-			main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
+			std::string formula_tmp = "Choosen formula: " + this->core_formulas_[this->formula_num_ - 1];
+			main_menu(this->get_percent(), this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 			std::cout << default_can;
 			
-			switch (this->formula_num) {
+			switch (this->formula_num_) {
 			case 1:
 				try{
 					for (this->x_y_.first = this->from_; this->x_y_.first <= this->to_; this->x_y_.first += this->step_) {
@@ -113,7 +118,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
+						main_menu(this->get_percent(), this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -131,7 +136,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
+						main_menu(this->get_percent(), this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -149,7 +154,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
+						main_menu(this->get_percent(), this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -167,7 +172,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
+						main_menu(this->get_percent(), this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -185,7 +190,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
+						main_menu(this->get_percent(), this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
