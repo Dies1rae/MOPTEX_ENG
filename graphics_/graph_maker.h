@@ -14,6 +14,7 @@
 #include <thread>
 
 const std::chrono::microseconds menu_timeout(50);
+inline static const unsigned long W = 100;
 
 class graph_maker {
 public:

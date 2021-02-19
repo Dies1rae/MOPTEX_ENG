@@ -29,7 +29,7 @@ void graph_maker::async_menu() {
 
 void graph_maker::set_parametrs() {
 	
-	std::cout << "Please set parametrs for field A B C and FROM TO STEP" << std::endl;
+	std::cout << "Please set parametrs for field A B C and FROM TO STEP"sv << std::endl;
 	std::cin >> this->A_ >> this->B_ >> this->C_ >> this->from_ >> this->to_ >> this->step_;
 }
 
@@ -37,13 +37,13 @@ void graph_maker::run_loop() {
 	
 	while(!this->quit_){
 		
-		gsch::Drawings<60, 30> default_can;
+		gsch::Drawings<W, 30> default_can;
 		default_can.axes();
 
 		main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 		std::cout << default_can;
 
-		std::cout << "Choose menu option: " << std::endl;
+		std::cout << "Choose menu option: "sv << std::endl;
 		this->menu_switcher_ = menu_switcher();
 			switch (this->menu_switcher_) {
 			//start
@@ -99,7 +99,8 @@ void graph_maker::run_loop() {
 			std::cout << default_can;
 
 			this->set_parametrs();
-			std::cout << "Choose formula: " << std::endl;
+
+			std::cout << "Choose formula: "sv << std::endl;
 			for (size_t ptr = 0; ptr < this->core_formulas_.size(); ptr ++) {
 				std::cout << ptr + 1 << ": " << this->core_formulas_[ptr] << std::endl;
 			}
@@ -125,7 +126,7 @@ void graph_maker::run_loop() {
 					}
 				}
 				catch (...) {
-					std::cerr << "Some data error" << std::endl;
+					std::cerr << "Some data error"sv << std::endl;
 				} break;
 
 			case 2:
@@ -143,7 +144,7 @@ void graph_maker::run_loop() {
 					}
 				}
 				catch (...) {
-					std::cerr << "Some data error" << std::endl;
+					std::cerr << "Some data error"sv << std::endl;
 				} break;
 
 			case 3:
@@ -161,7 +162,7 @@ void graph_maker::run_loop() {
 					}
 				}
 				catch (...) {
-					std::cerr << "Some data error" << std::endl;
+					std::cerr << "Some data error"sv << std::endl;
 				} break;
 
 			case 4:
@@ -179,7 +180,7 @@ void graph_maker::run_loop() {
 					}
 				}
 				catch (...) {
-					std::cerr << "Some data error" << std::endl;
+					std::cerr << "Some data error"sv << std::endl;
 				} break;
 
 			case 5:
@@ -198,7 +199,7 @@ void graph_maker::run_loop() {
 					}
 				}
 				catch (...) {
-					std::cerr << "Some data error" << std::endl;
+					std::cerr << "Some data error"sv << std::endl;
 				} break;
 		
 			default:
