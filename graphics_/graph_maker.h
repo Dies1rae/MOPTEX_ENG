@@ -1,4 +1,10 @@
+#define START 115
+#define BRAKE 98
+#define PAUSE 112
+#define QUIT 113 
+
 #pragma once
+
 #include <math.h>
 #include <vector>
 #include <string>
@@ -14,12 +20,14 @@ public:
 	
 	void set_parametrs();
 	void run_loop();
-	
+
 private:
 	//interface
-	bool start_ = false;
+	char menu_pos_ = '0';
+	bool brake_ = false;
 	bool pause_ = false;
-	bool break_ = false;
+	bool start_ = false;
+	bool quit_ = false;
 	bool info_ = false;
 	int menu_switcher_ = 0;
 	//core
