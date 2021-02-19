@@ -34,11 +34,10 @@ void graph_maker::set_parametrs() {
 }
 
 void graph_maker::run_loop() {
-	
+	gsch::Drawings<W, 30> default_can;
+	default_can.axes();
+
 	while(!this->quit_){
-		
-		gsch::Drawings<W, 30> default_can;
-		default_can.axes();
 
 		main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 		std::cout << default_can;
@@ -94,7 +93,9 @@ void graph_maker::run_loop() {
 			}
 
 		if(this->start_){
-			
+			default_can.clear();
+			default_can.axes();
+			this->percent_ = 0;
 			main_menu(this->get_percent(), 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 			std::cout << default_can;
 

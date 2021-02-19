@@ -33,6 +33,12 @@ namespace gsch{
     Line const& operator[](unsigned long y) const { return screen.at(screen.size() - (y + 1)); }
     char& operator[](Coord coord) { return operator[](coord.y).at(coord.x); }
     char const& operator[](Coord coord) const { return operator[](coord.y).at(coord.x); }
+        
+        void clear() {
+            Line empty;
+            std::fill(empty.begin(), empty.end(), ' ');
+            std::fill(screen.begin(), screen.end(), empty);
+        }
 
         void axes() {
             bool ctr = false;
