@@ -13,6 +13,8 @@
 #include <chrono>
 #include <thread>
 
+const std::chrono::microseconds menu_timeout(50);
+
 class graph_maker {
 public:
 	explicit graph_maker() = default;
@@ -20,6 +22,7 @@ public:
 	
 	void set_parametrs();
 	void run_loop();
+	void async_menu();
 
 private:
 	//interface

@@ -2,15 +2,24 @@
 #include "graph.h"
 #include "ascii_menu.h"
 
-#include <conio.h>
 #include <future>
+#include <thread>
+#include <conio.h>
+#include <mutex>
+#include <atomic>
 
-char get_keyboard_input() {
-	char input = '0';
-	while (input != 'q') {
-		input = _getch();
+using namespace std::literals;
+
+int menu_switcher() {
+	int menu = _getch();
+	return menu;
+}
+
+void graph_maker::async_menu() {
+	auto future = std::async(menu_switcher);
+	if (future.wait_for(menu_timeout) == std::future_status::ready) {
+		this->menu_switcher_ = future.get();
 	}
-	return input;
 }
 
 void graph_maker::set_parametrs() {
@@ -22,55 +31,66 @@ void graph_maker::set_parametrs() {
 void graph_maker::run_loop() {
 	
 	while(!this->quit_){
-
-
+		
 		gsch::Drawings<60, 30> default_can;
 		default_can.axes();
 
-		main_menu();
+		main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 		std::cout << default_can;
 
 		std::cout << "Choose menu option: " << std::endl;
-		this->menu_switcher_ = _getch();
-		switch (this->menu_switcher_) {
-		//start
-		case 1:
-			this->start_ = true;
-			break;
-		case 115:
-			this->start_ = true;
-			break;
-		//pause
-		case 2:
-			this->start_ = false;
-			this->pause_ = true;
-			break;
-		case 112:
-			this->start_ = false;
-			this->pause_ = true;
-			break;
-		//brake
-		case 3:
-			this->start_ = false;
-			this->brake_ = true;
-			break;
-		case 98:
-			this->start_ = false;
-			this->brake_ = true;
-			break;
-		//quit
-		case 113:
-			this->quit_ = true;
-			this->start_ = false;
-			this->brake_ = false;
-			break;
-		
+		this->menu_switcher_ = menu_switcher();
+			switch (this->menu_switcher_) {
+			//start
+			case 49:
+				this->start_ = true;
+				break;
+			case 115:
+				this->start_ = true;
+				break;
+			//pause
+			case 50:
+				this->start_ = false;
+				this->pause_ = true;
+				break;
+			case 112:
+				this->start_ = false;
+				this->pause_ = true;
+				break;
+			//brake
+			case 51:
+				this->start_ = false;
+				this->brake_ = true;
+				break;
+			case 98:
+				this->start_ = false;
+				this->brake_ = true;
+				break;
+			//quit
+			case 53:
+				this->quit_ = true;
+				this->start_ = false;
+				this->brake_ = false;
+				break;
+			case 113:
+				this->quit_ = true;
+				this->start_ = false;
+				this->brake_ = false;
+				break;
+			//info
+			case 52:
+				Info_menu(this->res_);
+				break;
+			case 105:
+				Info_menu(this->res_);
+				break;
+			default:
+				break;
+			}
 
-		default:
-			break;
-		}
 		if(this->start_){
-			main_menu();
+			
+			main_menu(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, "Choosen formula:", this->core_formulas_);
 			std::cout << default_can;
 
 			this->set_parametrs();
@@ -81,9 +101,9 @@ void graph_maker::run_loop() {
 			std::cin >> this->formula_num;
 	
 			std::string formula_tmp = "Choosen formula: " + this->core_formulas_[this->formula_num - 1];
-			main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+			main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 			std::cout << default_can;
-
+			
 			switch (this->formula_num) {
 			case 1:
 				try{
@@ -93,7 +113,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -111,6 +131,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
+						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -128,7 +149,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -146,7 +167,7 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
@@ -164,10 +185,11 @@ void graph_maker::run_loop() {
 						for (const auto& point : this->res_) {
 							default_can.plot(this->x_y_.first, this->x_y_.second);
 						}
-						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp);
+						main_menu(this->A_, this->B_, this->C_, this->from_, this->to_, this->step_, formula_tmp, this->core_formulas_);
 						std::cout << default_can;
 						std::chrono::milliseconds timespan(500);
 						std::this_thread::sleep_for(timespan);
+						
 					}
 				}
 				catch (...) {
@@ -178,5 +200,8 @@ void graph_maker::run_loop() {
 				break;
 			}
 		}
+		this->start_ = false;
+		system("PAUSE");
 	}
+	return;
 }
